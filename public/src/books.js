@@ -19,9 +19,7 @@ function partitionBooksByBorrowedStatus(books) {
     return allBooks
 }
 
-function getBorrowersForBook(book, accounts) {
-
-}
+function getBorrowersForBook(book, accounts) {}
 
 module.exports = {
   findAuthorById,
