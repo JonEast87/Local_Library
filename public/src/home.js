@@ -11,25 +11,23 @@ function getBooksBorrowedCount(books) {
     checkedIn = new Array()
 
   for (let i = 0; i < books.length; i++) {
-    if (books[i].borrows.every(ele => ele.returned === true)) checkedIn.push(books[i])
+    if (books[i].borrows.every((ele) => ele.returned === true)) checkedIn.push(books[i])
     else checkedOut.push(books[i])
   }
   return checkedOut.length
 }
 
-function getMostCommonGenres(books) {
-  function commonGenre (name, count) {
-    this.name = name,
-    this.count = count
-  }
-    
+function getMostCommonGenres(books) {   
   const result = books.reduce((acc, book) => {
     const genre = book.genre
     
     const genreInfo = acc.find((ele) => ele.name === genre)
 
     if (!genreInfo) {
-      let newGenre = new commonGenre(genre, 1)
+      let newGenre = {
+        name: genre,
+        count: 1
+      }
       acc.push(newGenre)
     } else {
       genreInfo.count++
@@ -63,11 +61,11 @@ function getMostPopularBooks(books) {
 }
 
 const getBooksByAuthorId = (books, authorId) => {
-  return books.filter(book => book.authorId === authorId)
+  return books.filter((book) => book.authorId === authorId)
 }
 
 function getMostPopularAuthors(books, authors) {   
-  const result = authors.map(author => {
+  const result = authors.map((author) => {
     const fullname = `${author.name.first} ${author.name.last}`,
       booksByAuthor = getBooksByAuthorId(books, author.id),
       totalBorrows = booksByAuthor.reduce((acc, book) => acc + book.borrows.length, 0),
