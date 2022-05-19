@@ -22,7 +22,7 @@ function partitionBooksByBorrowedStatus(books) {
 }
 
 // copied this from accounts.js due to issues with export/requiring it from accounts.js 
-function findAccountById(accounts, id) {
+function _findAccountById(accounts, id) {
   return accounts.find(account => account.id === id)
 }
 
@@ -30,7 +30,7 @@ function getBorrowersForBook(book, accounts) {
   const transactions = book.borrows
 
   const result = transactions.map((transaction) => {
-    const accountInfo = findAccountById(accounts, transaction.id)
+    const accountInfo = _findAccountById(accounts, transaction.id)
     const newTransaction = {
       // spread operator used to combine the two objects into one 
       ...transaction,

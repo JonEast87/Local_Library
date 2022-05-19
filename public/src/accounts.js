@@ -28,7 +28,7 @@ function getTotalNumberOfBorrows(account, books) {
 }
 
 // helper function to find author id for getBooksPossessedByAccount
-const getAuthorById = (author, id) => {
+const _getAuthorById = (author, id) => {
   return author.find((author) => author.id === id)
 }
 
@@ -44,7 +44,7 @@ function getBooksPossessedByAccount(account, books, authors) {
 
   // new objects are added to the given array
   result = result.map((book) => {
-    const author = getAuthorById(authors, book.authorId)
+    const author = _getAuthorById(authors, book.authorId)
     // spread operator used to combine book with the author info in the new object
     const newBook = {
       ...book,
