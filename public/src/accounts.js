@@ -28,8 +28,8 @@ function getTotalNumberOfBorrows(account, books) {
 }
 
 // helper function to find author id for getBooksPossessedByAccount
-const _getAuthorById = (author, id) => {
-  return author.find((author) => author.id === id)
+const _getAuthorById = (authors, id) => {
+  return authors.find((author) => author.id === id)
 }
 
 function getBooksPossessedByAccount(account, books, authors) {

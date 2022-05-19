@@ -69,18 +69,22 @@ function getMostPopularBooks(books) {
   return result;
 }
 
-const getBooksByAuthorId = (books, authorId) => {
+// helper function
+const _getBooksByAuthorId = (books, authorId) => {
   // method used to find all books related to the given authorId
   return books.filter((book) => book.authorId === authorId)
 }
 
 function getMostPopularAuthors(books, authors) {
   const result = authors.map((author) => {
-    // variable template literal for the first nad last names
+
+    // variable template literal for the first and last names
     const fullname = `${author.name.first} ${author.name.last}`,
-      booksByAuthor = getBooksByAuthorId(books, author.id),
+      booksByAuthor = _getBooksByAuthorId(books, author.id),
+
       // acc stores all the borrows length from the filter array that was returned
       totalBorrows = booksByAuthor.reduce((acc, book) => acc + book.borrows.length, 0),
+
       authorInfo = {
         name: fullname, 
         count: totalBorrows
