@@ -23,10 +23,9 @@ function getBooksBorrowedCount(books) {
 function getMostCommonGenres(books) {
   const result = books.reduce((acc, book) => {
     const genre = book.genre
-    
     // find method that is used to check if the object exists
     const genreInfo = acc.find((ele) => ele.name === genre)
-
+    
     // if no object exists then create it
     if (!genreInfo) {
       let newGenre = {
@@ -36,10 +35,11 @@ function getMostCommonGenres(books) {
       acc.push(newGenre)
       // added to it's count property if it already does exist
     } else {
+      console.log(genreInfo)
       genreInfo.count++
     }
     
-    return acc
+    return book
   }, [])
 
   // sort and splice to used to pass test
